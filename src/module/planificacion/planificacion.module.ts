@@ -1,3 +1,4 @@
+import { CompraModule } from './compra/compra.module';
 import { Module } from '@nestjs/common';
 import { PresupuestoModule } from './presupuesto/presupuesto.module';
 import { CotizacionModule } from './cotizacion/cotizacion.module';
@@ -5,7 +6,8 @@ import { CotizacionModule } from './cotizacion/cotizacion.module';
 @Module({
     imports: [
         PresupuestoModule,
-        CotizacionModule
+        CotizacionModule,
+        CompraModule
     ],
     controllers: [],
     providers: [],
