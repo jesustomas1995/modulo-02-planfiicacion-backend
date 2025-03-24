@@ -57,6 +57,8 @@ export const catchErrorCustom = (error: any, title: string) => {
       message = `Error conocido de Prisma: ${error.message}.`;
       statusCode = 400;
     }
+  } else if (error instanceof Prisma.PrismaClientValidationError) {
+    message = `Error estructura invalida: ${title}.`;
   } else if (error instanceof Prisma.PrismaClientUnknownRequestError) {
     message = `Error desconocido de Prisma al procesar ${title}.`;
   } else if (error instanceof Prisma.PrismaClientInitializationError) {

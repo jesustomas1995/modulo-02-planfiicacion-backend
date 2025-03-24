@@ -1,8 +1,8 @@
 {
   "name": "backend",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Este proyecto tiene la finalidad de registro de proveedores, presupuesto, cotizaciones, compras y su respectivo catalogo",
+  "author": "Jesus Tomas",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -32,6 +32,7 @@
     "compression": "^1.8.0",
     "dotenv": "^16.4.7",
     "jsonwebtoken": "^9.0.2",
+    "luxon": "^3.5.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },
@@ -45,6 +46,7 @@
     "@swc/core": "^1.10.7",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
+    "@types/luxon": "^3.4.2",
     "@types/node": "^22.10.7",
     "@types/supertest": "^6.0.2",
     "eslint": "^9.18.0",
