@@ -19,8 +19,8 @@ model usuarios {
   updatedAt      DateTime @updatedAt
   registerActive Boolean  @default(true) @db.Boolean()
   nombreCompleto String   @db.VarChar(500)
-  usuario        String   @db.VarChar(50)
-  password       String   @db.VarChar(20)
+  usuario        String   @unique() @db.VarChar(50)
+  password       String   @db.VarChar(200)
 }
 
 model marca {
@@ -69,7 +69,7 @@ model proveedor {
   celular            String?      @db.VarChar(50)
   telefono           String?      @db.VarChar(50)
   email              String?      @db.VarChar(500)
-  direccion           String?      @db.VarChar(500)
+  direccion          String?      @db.VarChar(500)
   departamento       Int?         @db.Integer()
   municipio          String?      @db.VarChar(250)
   cotizacion         cotizacion[]
