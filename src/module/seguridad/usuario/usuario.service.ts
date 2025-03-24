@@ -117,7 +117,8 @@ export class UsuarioService {
       const updatedData = await this.prisma.write.usuarios.update({
         where: { id },
         data: {
-          ...data,
+          usuario: data.usuario,
+          nombreCompleto: data.nombreCompleto,
           password: password_encrypt,
           updatedAt: new Date(),
         },
