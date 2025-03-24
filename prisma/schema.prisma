@@ -12,3 +12,118 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model usuarios {
+  id             Int      @id @default(autoincrement())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  nombreCompleto String   @db.VarChar(500)
+  usuario        String   @db.VarChar(50)
+  password       String   @db.VarChar(20)
+}
+
+model marca {
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  nombre    String     @db.VarChar(100)
+  products  producto[]
+}
+
+model categoria {
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  nombre    String     @db.VarChar(100)
+  products  producto[]
+}
+
+model producto {
+  id                 Int                  @id @default(autoincrement())
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  nombre             String               @db.VarChar(100)
+  NumberPart         String?              @db.VarChar(200)
+  NumberSerial       String?              @db.VarChar(200)
+  marcaId            Int
+  categoriaId        Int
+  cotizacion_detalle cotizacion_detalle[]
+  marca              marca                @relation(fields: [marcaId], references: [id])
+  categoria          categoria            @relation(fields: [categoriaId], references: [id])
+  compra_detalle     compra_detalle[]
+}
+
+model proveedor {
+  id                 Int          @id @default(autoincrement())
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  representanteLegal String       @db.VarChar(500)
+  razonSocial        String       @db.VarChar(250)
+  nit                String       @db.VarChar(100)
+  celular            String?      @db.VarChar(50)
+  telefono           String?      @db.VarChar(50)
+  email              String?      @db.VarChar(500)
+  direcion           String?      @db.VarChar(500)
+  departamento       Int?         @db.Integer()
+  municipio          String?      @db.VarChar(250)
+  cotizacion         cotizacion[]
+  compra             compra[]
+}
+
+model presupuesto {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  nombre      String   @db.VarChar(100)
+  descripcion String   @db.VarChar(100)
+  vencimiento DateTime
+  monto       Float
+  sobrante    Float
+  compra      compra[]
+}
+
+model cotizacion {
+  id                Int                  @id @default(autoincrement())
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+  proveedorId       Int
+  total             Float
+  proveedor         proveedor            @relation(fields: [proveedorId], references: [id])
+  cotizacionDetalle cotizacion_detalle[]
+}
+
+model cotizacion_detalle {
+  id           Int        @id @default(autoincrement())
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  precio       Float
+  cantidad     Int
+  productoId   Int
+  cotizacionId Int
+  cotizacion   cotizacion @relation(fields: [cotizacionId], references: [id])
+  producto     producto   @relation(fields: [productoId], references: [id])
+}
+
+model compra {
+  id             Int              @id @default(autoincrement())
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  proveedorId    Int
+  total          Float
+  presupuestoId  Int
+  proveedor      proveedor        @relation(fields: [proveedorId], references: [id])
+  compra_detalle compra_detalle[]
+  presupuesto    presupuesto      @relation(fields: [presupuestoId], references: [id])
+}
+
+model compra_detalle {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  precio     Float
+  cantidad   Int
+  productoId Int
+  compraId   Int
+  compra     compra   @relation(fields: [compraId], references: [id])
+  producto   producto @relation(fields: [productoId], references: [id])
+}
