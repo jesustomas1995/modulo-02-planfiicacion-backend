@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './databases/prisma.module';
 import { PackageInfoService } from './common/package.service';
 import { SeguridadModule } from './module/seguridad/seguridad.module';
+import { PlanificacionModule } from './module/planificacion/planificacion.module';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { SeguridadModule } from './module/seguridad/seguridad.module';
       envFilePath: '.env', // Ruta al archivo .env
     }),
     CatalogoModule,
-    SeguridadModule,
+    SeguridadModule, PlanificacionModule,
     PrismaModule,
   ],
   controllers: [AppController],

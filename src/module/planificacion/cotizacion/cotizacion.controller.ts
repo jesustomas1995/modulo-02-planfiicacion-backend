@@ -1,31 +1,31 @@
 import { Controller, Get, Post, Body, Patch, Param, ParseIntPipe, Put, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
-import { PresupuestoService } from './presupuesto.service';
-import { CreatePresupuestoDto } from './dto/create-presupuesto.dto';
+import { CotizacionService } from './cotizacion.service';
+import { CreateCotizacionDto } from './dto/create-cotizacion.dto';
 // import { GetToken, IToken } from '@/common/decorator/token.decorator';
 import { ChangeStatusDto } from '@/common/dto/changeStatus.dto';
 import { PaginationDto } from '@/common/dto/pagination.dto';
 // import { AuthGuard } from '@/common/guards/rol.guard';
 // import { AllowPermissions } from '@/common/guards/rol.decorator';
 
-@ApiTags('PLANIFICACION - PRESUPUESTO')
-@Controller('/planificacion/presupuesto')
+@ApiTags('PLANIFICACION - COTIZACION')
+@Controller('/planificacion/cotizacion')
 @ApiSecurity('Authorization')
-export class PresupuestoController {
-  constructor(private readonly service: PresupuestoService) { }
+export class CotizacionController {
+  constructor(private readonly service: CotizacionService) { }
 
   @Post()
-  @ApiOperation({ summary: 'Servicio para registrar `Presupuesto`' })
+  @ApiOperation({ summary: 'Servicio para registrar `Cotización`' })
   @ApiResponse({ status: 200, description: 'Operación exitosa' })
   @ApiResponse({ status: 400, description: 'Error de validación de datos' })
   @ApiResponse({ status: 500, description: 'Error Interno del servidor' })
-  create(@Body() data: CreatePresupuestoDto,) {
+  create(@Body() data: CreateCotizacionDto,) {
     return this.service.create(data);
   }
 
   @Post('list')
-  @ApiOperation({ summary: 'Servicio para listar los `Presupuesto` por pagination y filtros' })
+  @ApiOperation({ summary: 'Servicio para listar los `Cotizacion` por pagination y filtros' })
   @ApiResponse({ status: 200, description: 'Operación exitosa' })
   @ApiResponse({ status: 400, description: 'Error de validación de datos' })
   @ApiResponse({ status: 500, description: 'Error Interno del servidor' })
@@ -34,7 +34,7 @@ export class PresupuestoController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Servicio para obtener el `Presupuesto` del aviso por ID' })
+  @ApiOperation({ summary: 'Servicio para obtener el `Cotizacion` del aviso por ID' })
   @ApiResponse({ status: 200, description: 'Operación exitosa' })
   @ApiResponse({ status: 400, description: 'Error de validación de datos' })
   @ApiResponse({ status: 500, description: 'Error Interno del servidor' })
@@ -43,19 +43,19 @@ export class PresupuestoController {
   }
 
   @Put(':id')
-  @ApiOperation({ summary: 'Servicio para actualizar la información del `Presupuesto`' })
+  @ApiOperation({ summary: 'Servicio para actualizar la información del `Cotizacion`' })
   @ApiResponse({ status: 200, description: 'Operación exitosa' })
   @ApiResponse({ status: 400, description: 'Error de validación de datos' })
   @ApiResponse({ status: 500, description: 'Error Interno del servidor' })
   update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() data: CreatePresupuestoDto,
+    @Body() data: CreateCotizacionDto,
   ) {
     return this.service.update(id, data);
   }
 
   @Patch(':id')
-  @ApiOperation({ summary: 'Servicio para eliminar el registro de `Presupuesto`' })
+  @ApiOperation({ summary: 'Servicio para eliminar el registro de `Cotizacion`' })
   @ApiResponse({ status: 200, description: 'Operación exitosa' })
   @ApiResponse({ status: 400, description: 'Error de validación de datos' })
   @ApiResponse({ status: 500, description: 'Error Interno del servidor' })

@@ -5,12 +5,14 @@ import { json } from 'express';
 import { ConfigService } from '@nestjs/config';
 import * as compression from 'compression';
 import { PackageInfoService } from './common/package.service';
+import { createValidationPipe } from './common/pipe/validation.pipe';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
   const packageInfoService = app.get(PackageInfoService);
   app.use(compression());
+  app.useGlobalPipes(createValidationPipe());
   app.enableCors({
     origin: (process.env.ENV_MODE == "production") ? process.env.ENV_ORIGIN?.split(",") : "*",
     // origin: "*",

@@ -30,7 +30,7 @@ export class CreatePresupuestoDto {
 
   @ApiProperty({
     description: 'sobrante',
-    example: 1,
+    example: 0,
   })
   @IsOptional()
   @IsNumber({}, { message: 'El `sobrante` debe ser un número' })
