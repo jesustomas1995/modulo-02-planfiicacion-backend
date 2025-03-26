@@ -75,4 +75,12 @@ export class CreateProveedorDto {
   @Length(1, 250, { message: 'El nombre debe tener entre 1 y 250 caracteres' })
   municipio: string;
 
+  @ApiProperty({
+    description: 'Departamento',
+    example: 1,
+  })
+  @IsNumber({}, { message: 'El `departamentoId` debe ser un número' })
+  @Min(0, { message: 'El `departamentoId` debe ser como mínimo 1' })
+  departamentoId: number;
+
 }

@@ -46,6 +46,8 @@ export class ProductoService {
             nombre: true,
             descripcion: true,
             registerActive: true,
+            numberPart: true,
+            numberSerial: true,
             categoria: {
               select: {
                 id: true,

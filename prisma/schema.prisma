@@ -70,7 +70,7 @@ model proveedor {
   telefono           String?      @db.VarChar(50)
   email              String?      @db.VarChar(500)
   direccion          String?      @db.VarChar(500)
-  departamento       Int?         @db.Integer()
+  departamentoId     Int?         @db.Integer()
   municipio          String?      @db.VarChar(250)
   cotizacion         cotizacion[]
   compra             compra[]
