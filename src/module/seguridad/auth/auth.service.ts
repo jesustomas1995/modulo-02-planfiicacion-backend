@@ -31,6 +31,7 @@ export class AuthService {
         },
       });
       if (!authSelected) throw new HttpException("Usuario no existente o no activo", HttpStatus.BAD_REQUEST);
+      const contraseña_encriptada = await bcrypt.hash(data.password, 10);
 
       const password_equals = await bcrypt.compare(data.password, authSelected.password);
       if (!password_equals)

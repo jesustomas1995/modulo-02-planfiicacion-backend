@@ -4,9 +4,8 @@ import { Request, Response, NextFunction } from 'express';
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
     use(req: Request, res: Response, next: NextFunction) {
-        if (req.path === '/auth/login') {
+        if (req.originalUrl === '/api/auth/login') 
             return next(); // Permite la ruta sin autenticación
-        }
 
         // Aquí verificas autenticación, por ejemplo, con un token en los headers
         if (!req.headers.authorization) {
