@@ -111,6 +111,7 @@ export class CompraService {
               select: {
                 id: true,
                 nombre: true,
+                monto: true
               }
             },
             proveedor: {
@@ -168,7 +169,7 @@ export class CompraService {
               nombre: true,
             }
           },
-          compra_detalle: {
+          compraDetalle: {
             select: {
               id: true,
               cantidad: true,

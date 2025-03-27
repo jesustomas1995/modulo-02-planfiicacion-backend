@@ -150,7 +150,7 @@ export class CotizacionService {
             }
           }
         },
-        where: { id },
+        where: { id, registerActive: true },
       });
       if (!data) {
         return new GenericResponse({
@@ -183,7 +183,7 @@ export class CotizacionService {
         });
         if (product_total != data.detalle.length)
           throw new HttpException("Uno de los id de los productos no esta disponible", HttpStatus.BAD_REQUEST);
-
+        console.log(id, data.detalle, data.detalle.reduce((total, item) => total + (item.cantidad * item.precio), 0))
         const [updatedData, detalles] = await Promise.allSettled([
           tx.cotizacion.update({
             where: { id },

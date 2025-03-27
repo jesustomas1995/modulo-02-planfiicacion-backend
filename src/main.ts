@@ -11,12 +11,14 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
   const packageInfoService = app.get(PackageInfoService);
+
   app.use(compression());
   app.useGlobalPipes(createValidationPipe());
   app.enableCors({
     origin: (process.env.ENV_MODE == "production") ? process.env.ENV_ORIGIN?.split(",") : "*",
     // origin: "*",
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   });
   app.use(json({ limit: configService.get('APP_FILE_MAX_SIZE') ?? '100mb' }));

@@ -122,7 +122,7 @@ model compra {
   total          Float
   presupuestoId  Int
   proveedor      proveedor        @relation(fields: [proveedorId], references: [id])
-  compra_detalle compra_detalle[]
+  compraDetalle compra_detalle[]
   presupuesto    presupuesto      @relation(fields: [presupuestoId], references: [id])
 }
 

@@ -18,6 +18,7 @@ export class PresupuestoService {
       const createdData = await this.prisma.write.presupuesto.create({
         data: {
           ...data,
+          sobrante: data.monto,
           registerActive: true,
         },
       });

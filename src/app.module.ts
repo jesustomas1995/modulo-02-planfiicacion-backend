@@ -15,7 +15,8 @@ import { PlanificacionModule } from './module/planificacion/planificacion.module
       envFilePath: '.env', // Ruta al archivo .env
     }),
     CatalogoModule,
-    SeguridadModule, PlanificacionModule,
+    SeguridadModule,
+    PlanificacionModule,
     PrismaModule,
   ],
   controllers: [AppController],
