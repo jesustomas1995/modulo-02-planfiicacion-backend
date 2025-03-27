@@ -10,6 +10,7 @@ Para realizar este proyecto se hizo uso de:
 ## Base de datos
 se cuenta con un backup del sistema en la raiz del proyecto dentro de la carpeta `backup_db` en el mismo esta el archivo `bd_prueba.sql`, se recomienda restaurar la base de datos en `postgres` con la version `14.13`
 
+
 ## configuracion de variables de entorno
 en el proyecto raiz existe el archivo `example.env`, usted debe copiar este archivo y renombrarlo `.env` y modifique las variables para poder conectarse a la bse de datos y otras variables como ser el CORS, SECRETO DEL TOKEN Y otros.
 

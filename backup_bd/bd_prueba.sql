@@ -223,3 +223,14 @@ ALTER TABLE ONLY "public"."producto" ADD CONSTRAINT "producto_categoriaId_fkey" 
 ALTER TABLE ONLY "public"."producto" ADD CONSTRAINT "producto_marcaId_fkey" FOREIGN KEY ("marcaId") REFERENCES marca(id) ON UPDATE CASCADE ON DELETE RESTRICT NOT DEFERRABLE;
 
 -- 2025-03-26 12:01:48.839648+00
+
+SELECT setval(pg_get_serial_sequence('categoria', 'id'), (SELECT max(id) FROM categoria), false);
+SELECT setval(pg_get_serial_sequence('compra', 'id'), (SELECT max(id) FROM compra), false);
+SELECT setval(pg_get_serial_sequence('compra_detalle', 'id'), (SELECT max(id) FROM compra_detalle), false);
+SELECT setval(pg_get_serial_sequence('cotizacion', 'id'), (SELECT max(id) FROM cotizacion), false);
+SELECT setval(pg_get_serial_sequence('cotizacion_detalle', 'id'), (SELECT max(id) FROM cotizacion_detalle), false);
+SELECT setval(pg_get_serial_sequence('marca', 'id'), (SELECT max(id) FROM marca), false);
+SELECT setval(pg_get_serial_sequence('presupuesto', 'id'), (SELECT max(id) FROM presupuesto), false);
+SELECT setval(pg_get_serial_sequence('producto', 'id'), (SELECT max(id) FROM producto), false);
+SELECT setval(pg_get_serial_sequence('proveedor', 'id'), (SELECT max(id) FROM proveedor), false);
+SELECT setval(pg_get_serial_sequence('usuarios', 'id'), (SELECT max(id) FROM usuarios), false);
