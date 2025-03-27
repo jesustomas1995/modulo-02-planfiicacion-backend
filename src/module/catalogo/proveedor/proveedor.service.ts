@@ -41,6 +41,9 @@ export class ProveedorService {
       // const where = prepareWhere(filterDto.where);
       const [data, total] = await Promise.all([
         this.prisma.read.proveedor.findMany({
+          where: {
+            registerActive: true,
+          },
           skip: offset,
           take: limit,
         }),
@@ -111,12 +114,12 @@ export class ProveedorService {
   }
 
   // Marcar un registro como eliminado
-  async changeStatus(id: number, isDeleted: boolean): Promise<GenericResponse<any>> {
+  async changeStatus(id: number): Promise<GenericResponse<any>> {
     try {
       const deletedData = await this.prisma.write.proveedor.update({
         where: { id },
         data: {
-          registerActive: isDeleted,
+          registerActive: false,
           updatedAt: new Date(),
         },
       });

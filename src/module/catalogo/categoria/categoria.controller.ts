@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, ParseIntPipe, Put, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Delete, Param, ParseIntPipe, Put } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 import { CategoriaService } from './categoria.service';
@@ -54,15 +54,14 @@ export class CategoriaController {
     return this.service.update(id, data);
   }
 
-  @Patch(':id')
+  @Delete(':id')
   @ApiOperation({ summary: 'Servicio para eliminar el registro de `CATEGORIA`' })
   @ApiResponse({ status: 200, description: 'Operación exitosa' })
   @ApiResponse({ status: 400, description: 'Error de validación de datos' })
   @ApiResponse({ status: 500, description: 'Error Interno del servidor' })
-  remove(@Param('id', ParseIntPipe) id: number, @Body() body: ChangeStatusDto) {
+  remove(@Param('id', ParseIntPipe) id: number) {
     return this.service.changeStatus(
-      id,
-      body.registerActive,
+      id
     );
   }
 }

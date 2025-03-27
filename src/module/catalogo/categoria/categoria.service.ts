@@ -41,7 +41,9 @@ export class CategoriaService {
       // const where = prepareWhere(filterDto.where);
       const [data, total] = await Promise.all([
         this.prisma.read.categoria.findMany({
-
+          where: {
+            registerActive: true,
+          },
           skip: offset,
           take: limit,
         }),
@@ -112,12 +114,12 @@ export class CategoriaService {
   }
 
   // Marcar un registro como eliminado
-  async changeStatus(id: number, isDeleted: boolean): Promise<GenericResponse<any>> {
+  async changeStatus(id: number): Promise<GenericResponse<any>> {
     try {
       const deletedData = await this.prisma.write.categoria.update({
         where: { id },
         data: {
-          registerActive: isDeleted,
+          registerActive: false,
           updatedAt: new Date(),
         },
       });

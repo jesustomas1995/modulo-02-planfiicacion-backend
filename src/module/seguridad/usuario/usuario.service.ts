@@ -54,6 +54,9 @@ export class UsuarioService {
             createdAt: true,
             updatedAt: true,
           },
+          where: {
+            registerActive: true,
+          },
           skip: offset,
           take: limit,
         }),
@@ -135,12 +138,12 @@ export class UsuarioService {
   }
 
   // Marcar un registro como eliminado
-  async changeStatus(id: number, isDeleted: boolean): Promise<GenericResponse<any>> {
+  async changeStatus(id: number): Promise<GenericResponse<any>> {
     try {
       const deletedData = await this.prisma.write.usuarios.update({
         where: { id },
         data: {
-          registerActive: isDeleted,
+          registerActive: false,
           updatedAt: new Date(),
         },
       });
